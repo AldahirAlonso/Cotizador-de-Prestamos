@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Header from "./components/Header"
+import Button from "./components/Button"
+import { formatearDinero } from './helpers'
 
 function App() {
   const [cantidad, setCantidad] = useState(10000);
@@ -39,21 +41,16 @@ function App() {
         <Header />
 
         <div className='flex justify-between my-6'>
-          <button
-            type='button'
-            className='h-10 w-10 flex items-center justify-center font-bold text-white
-            text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2
-            hover:ring-offset-2 hover:ring-lime-500'
-            onClick={handleClickDecremento}
-          >-</button>
+          <Button 
+            operador='-'
+            fn={handleClickDecremento}
+          />
 
-          <button
-            type='button'
-            className='h-10 w-10 flex items-center justify-center font-bold text-white
-            text-2xl bg-lime-500 rounded-full hover:outline-none hover:ring-2
-            hover:ring-offset-2 hover:ring-lime-500'
-            onClick={handleClickIncremento}
-          >+</button>
+          <Button 
+            operador='+'
+            fn={handleClickIncremento}
+          />
+            
         </div>
 
         <input 
@@ -66,7 +63,9 @@ function App() {
           value={cantidad}
         />
 
-        <p className='text-center my-10 text-5xl font-extrabold text-indigo-600'>{cantidad}</p>
+        <p className='text-center my-10 text-5xl font-extrabold text-indigo-600'>
+          {formatearDinero(cantidad)}
+        </p>
       </div>
   )
 }
